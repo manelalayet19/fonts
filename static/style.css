@@ -1,0 +1,404 @@
+@import url("https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css");
+@import url("https://fonts.googleapis.com/css?family=Inter:800,500,400,600");
+* {
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+html,
+body {
+  margin: 0px;
+  height: 100%;
+}
+/* a blue color as a generic focus style */
+button:focus-visible {
+  outline: 2px solid #4a90e2 !important;
+  outline: -webkit-focus-ring-color auto 5px !important;
+}
+a {
+  text-decoration: none;
+}
+
+.franch-version {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  .franch-version .div {
+    background-color: #ffffff;
+    width: 1440px;
+    height: 2639px;
+    position: relative;
+  }
+  
+  .franch-version .whatsapp-image {
+    position: absolute;
+    width: 414px;
+    height: 120px;
+    top: 115px;
+    left: 102px;
+    object-fit: cover;
+  }
+  
+  .franch-version .line {
+    position: absolute;
+    width: 1245px;
+    height: 10px;
+    top: 271px;
+    left: 97px;
+  }
+  
+  .franch-version .pourquoi-geoimpact {
+    position: absolute;
+    width: 321px;
+    top: 466px;
+    left: 81px;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 18px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .text-wrapper {
+    font-weight: 600;
+    color: #092540;
+  }
+  
+  .franch-version .span {
+    font-weight: 800;
+    color: #91ced4;
+  }
+  
+  .franch-version .flexcontainer {
+    width: 478px;
+    height: 467px;
+    top: 523px;
+    left: 102px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    position: absolute;
+  }
+  
+  .franch-version .text {
+    position: relative;
+    align-self: stretch;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 12px;
+    text-align: justify;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .text-wrapper-2 {
+    color: #092540;
+  }
+  
+  .franch-version .text-wrapper-3 {
+    font-weight: 700;
+    color: #092540;
+  }
+  
+  .franch-version .flexcontainer-2 {
+    width: 1243px;
+    height: 130px;
+    top: 301px;
+    left: 106px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    position: absolute;
+  }
+  
+  .franch-version .text-wrapper-4 {
+    font-weight: 800;
+    color: #dcdc1e;
+    font-size: 14px;
+  }
+  
+  .franch-version .text-wrapper-5 {
+    font-weight: 800;
+    color: #91ced4;
+    font-size: 14px;
+  }
+  
+  .franch-version .canada-le {
+    position: absolute;
+    top: 174px;
+    left: 1111px;
+    font-family: "Inter", Helvetica;
+    font-weight: 500;
+    color: #092540;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .group {
+    position: absolute;
+    width: 1251px;
+    height: 339px;
+    top: 1052px;
+    left: 97px;
+  }
+  
+  .franch-version .overlap {
+    position: relative;
+    width: 1245px;
+    height: 339px;
+    background-color: #e9eef67d;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px #0925401a;
+  }
+  
+  .franch-version .participez-l-v {
+    position: absolute;
+    width: 967px;
+    top: 29px;
+    left: 139px;
+    font-family: "Inter", Helvetica;
+    font-weight: 800;
+    color: #092540;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .overlap-group {
+    position: absolute;
+    width: 1228px;
+    height: 188px;
+    top: 121px;
+    left: 7px;
+  }
+  
+  .franch-version .overlap-group-wrapper {
+    position: absolute;
+    width: 313px;
+    height: 71px;
+    top: 117px;
+    left: 460px;
+  }
+  
+  .franch-version .div-wrapper {
+    position: relative;
+    width: 311px;
+    height: 71px;
+    background-color: #092540;
+    border-radius: 50px;
+  }
+  
+  .franch-version .text-wrapper-6 {
+    position: absolute;
+    top: 25px;
+    left: 92px;
+    font-family: "Inter", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: underline;
+  }
+  
+  .franch-version .flexcontainer-3 {
+    width: 1228px;
+    height: 120px;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    position: absolute;
+  }
+  
+  .franch-version .span-wrapper {
+    color: #092540;
+    position: relative;
+    align-self: stretch;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .text-wrapper-7 {
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: #092540;
+    font-size: 12px;
+    letter-spacing: 0;
+  }
+  
+  .franch-version .p {
+    position: absolute;
+    width: 1231px;
+    top: 83px;
+    left: 14px;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: #092540;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .overlap-2 {
+    position: absolute;
+    width: 1046px;
+    height: 839px;
+    top: 1422px;
+    left: 197px;
+  }
+  
+  .franch-version .flexcontainer-4 {
+    width: 967px;
+    height: 242px;
+    top: 0;
+    left: 39px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    position: absolute;
+  }
+  
+  .franch-version .text-2 {
+    color: transparent;
+    position: relative;
+    align-self: stretch;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .rectangle {
+    position: absolute;
+    width: 1046px;
+    height: 616px;
+    top: 223px;
+    left: 0;
+    background-color: #91ced442;
+    border-radius: 10px;
+  }
+  
+  .franch-version .ps {
+    position: absolute;
+    width: 988px;
+    height: 561px;
+    top: 251px;
+    left: 29px;
+    object-fit: cover;
+  }
+  
+  .franch-version .text-wrapper-8 {
+    position: absolute;
+    top: 2441px;
+    left: 635px;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: #092540;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .si-vous-ne-souhaitez {
+    position: absolute;
+    top: 2561px;
+    left: 378px;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: transparent;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .geoimpact-boul-de {
+    position: absolute;
+    width: 404px;
+    top: 2481px;
+    left: 518px;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: #092540;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .text-wrapper-9 {
+    font-weight: 700;
+  }
+  
+  .franch-version .text-wrapper-10 {
+    position: absolute;
+    top: 2521px;
+    left: 273px;
+    font-family: "Inter", Helvetica;
+    font-weight: 400;
+    color: #092540;
+    font-size: 12px;
+    letter-spacing: 0;
+    line-height: normal;
+  }
+  
+  .franch-version .overlap-wrapper {
+    position: absolute;
+    width: 313px;
+    height: 71px;
+    top: 2302px;
+    left: 564px;
+  }
+  
+  .franch-version .request-a-demo {
+    position: absolute;
+    top: 25px;
+    left: 84px;
+    font-family: "Inter", Helvetica;
+    font-weight: 600;
+    color: #ffffff;
+    font-size: 18px;
+    text-align: center;
+    letter-spacing: 0;
+    line-height: normal;
+    text-decoration: underline;
+  }
+  
+  .franch-version .image {
+    position: absolute;
+    width: 60px;
+    height: 58px;
+    top: 2421px;
+    left: 821px;
+    object-fit: cover;
+  }
+  
+  .franch-version .img {
+    position: absolute;
+    width: 774px;
+    height: 442px;
+    top: 524px;
+    left: 592px;
+    object-fit: cover;
+  }
+  

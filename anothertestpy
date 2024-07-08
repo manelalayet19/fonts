@@ -1,0 +1,143 @@
+from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.action_chains import ActionChains
+import os
+from dotenv import load_dotenv
+from twocaptcha import TwoCaptcha
+import time
+from selenium.common.exceptions import NoSuchElementException, StaleElementReferenceException, TimeoutException
+import csv
+import re
+from selenium.common.exceptions import ElementClickInterceptedException
+
+# Load environment variables
+load_dotenv()
+username = 'info@econ3d.com'
+password = os.getenv('password')
+apikey_2captcha = os.getenv('APIKEY_2CAPTCHA')
+
+# Browser options
+
+options = Options()
+options.page_load_strategy = 'normal'
+driver = webdriver.Chrome(options=options)
+
+
+def solve_captcha():
+    solver = TwoCaptcha(apikey_2captcha)
+    try:
+        result = solver.recaptcha(
+            sitekey='6LdrPCcfAAAAAItDUROndz6RcAi0ngbTjYj4BKHB', url='https://devbusiness.un.org/user/login')
+        return result.get('code')
+    except Exception as e:
+        print("Captcha solving error:", e)
+        return None
+
+
+def scroll_to_bottom():
+    """A simple function to scroll to the bottom of a dynamically loading page."""
+    last_height = driver.execute_script("return document.body.scrollHeight")
+
+    while True:
+        driver.execute_script(
+            "window.scrollTo(0, document.body.scrollHeight);")
+        time.sleep(30)
+        new_height = driver.execute_script("return document.body.scrollHeight")
+        if new_height == last_height:
+            break
+        last_height = new_height
+
+
+def login_and_redirect():
+
+    try:
+        # Navigate to login page
+        driver.get('https://devbusiness.un.org/user/login')
+        driver.find_element(By.ID, 'edit-name').send_keys(username)
+        driver.find_element(By.ID, 'edit-pass').send_keys(password)
+
+        # Solve and submit captcha
+        captcha_response = solve_captcha()
+        captcha_response = solve_captcha()
+        if captcha_response:
+            driver.execute_script(
+                f"document.querySelector('[name=\"g-recaptcha-response\"]').innerHTML = '{captcha_response}';")
+            driver.find_element(By.ID, 'edit-submit').click()
+            WebDriverWait(driver, 30).until(EC.url_changes(
+                'https://devbusiness.un.org/user/login'))
+            WebDriverWait(driver, 30).until(
+                lambda d: d.current_url == 'https://devbusiness.un.org/')
+            driver.get("https://devbusiness.un.org/site-search")
+
+        projects = []
+
+        collect_project_data(driver, projects)
+
+        with open('projects.csv', 'w', newline='', encoding='utf-8') as file:
+            writer = csv.DictWriter(file, fieldnames=['title', 'url', 'emails'])
+            writer.writeheader()
+            for project in projects:
+                writer.writerow(project)
+        print(f"Total projects processed: {len(projects)}")
+
+    finally:
+        driver.quit()
+
+
+
+def collect_project_data(driver, projects):
+    while True:
+        try:
+            titles = WebDriverWait(driver, 30).until(
+                EC.presence_of_all_elements_located((By.XPATH, '//*[@id="block-un-devbusiness-content"]//h3/a')))
+            for title in titles:
+                projects.append(
+                    {'title': title.text, 'url': title.get_attribute('href'), 'emails': []})
+
+            # Try to click the next button
+            next_button = WebDriverWait(driver, 30).until(
+                EC.element_to_be_clickable((By.XPATH, '//*[@rel="next"]')))
+            driver.execute_script("arguments[0].scrollIntoView({block: 'center'});", next_button)
+
+            try:
+                next_button.click()
+            except ElementClickInterceptedException:
+                driver.execute_script("arguments[0].click();", next_button)
+
+            WebDriverWait(driver, 30).until(
+                lambda d: d.execute_script('return document.readyState') == 'complete')
+
+        except TimeoutException:
+            print("Timeout or no more pages")
+            break
+
+    for project in projects:
+        print(f' The project is  : {project}')
+        fetch_emails_for_project(driver, project)
+
+
+def fetch_emails_for_project(driver, project):
+    driver.get(project['url'])
+    try:
+        WebDriverWait(driver, 30).until(lambda d: d.execute_script(
+            'return document.readyState') == 'complete')
+        emails = []
+        mainContent = driver.find_element(
+            By.XPATH, '/html/body/div[1]/div[2]/main').text
+        found_emails = re.findall(r'[\w.+-]+@[\w-]+\.[\w.-]+', mainContent)
+        print(f"Found emails for {project['title']}: {found_emails}")
+        emails.extend(found_emails)
+        project['emails'] = ' '.join(emails) if emails else "No emails found"
+    except TimeoutException:
+        project['emails'] = "Failed to load emails"
+    except Exception as error:
+        print(f'Cannot load email for project {project["title"]}: {error}')
+
+    driver.back()
+
+
+
+login_and_redirect()
